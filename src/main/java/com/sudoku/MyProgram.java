@@ -4,10 +4,6 @@ public class MyProgram {
     public static int[][] board = new int[9][9];
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++)
-                board[i][j] = -1;
-        }
         fillCell(0, 0);
         for (int i = 0; i < 9; i++) {
             if (i % 3 == 0 && i > 0)
@@ -46,18 +42,15 @@ public class MyProgram {
         ArrayList<Integer> arr = new ArrayList<Integer>();
         for (int i = 1; i < 10; i++)
             arr.add(i);
-        for (int j = 0; j < 9; j++) {
-            if (board[row][j] != 0) 
-                arr.remove(Integer.valueOf(board[row][j]));
-            if (board[j][col] != 0)
-                arr.remove(Integer.valueOf(board[j][col]));
+        for (int j = 0; j < 9; j++) { 
+            arr.remove(Integer.valueOf(board[row][j]));
+            arr.remove(Integer.valueOf(board[j][col]));
         }
         int rowBox = (row / 3) * 3;
         int colBox = (col / 3) * 3;
         for (int k = rowBox; k < rowBox + 3; k++) {
             for (int l = colBox; l < colBox + 3; l++) {
-                if (board[k][l] != 0)
-                    arr.remove(Integer.valueOf(board[k][l]));
+                arr.remove(Integer.valueOf(board[k][l]));
             }
         }
         return arr;
